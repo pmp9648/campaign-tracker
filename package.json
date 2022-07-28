@@ -1,0 +1,52 @@
+{
+  "name": "campaign-tracker",
+  "version": "0.0.1",
+  "scripts": {
+    "ng": "ng",
+    "build": "ng build core --configuration development",
+    "restore": "dotnet restore ./server -s ./server/nuget-packages",
+    "seed": "dotnet run --project ./server/CampaignTracker.DbCli -- \"Dev\"",
+    "start-campaign-tracker": "ng serve campaign-tracker --configuration development",
+    "start-docs": "ng serve docs --configuration development",
+    "start-server": "dotnet run --project ./server/CampaignTracker.Web",
+    "update-db": "dotnet ef database update -s ./server/CampaignTracker.Web",
+    "watch": "ng build core --watch --configuration development",
+    "watch-server": "dotnet watch run --project ./server/CampaignTracker.Web"
+  },
+  "dependencies": {
+    "@angular/animations": "^14.0.4",
+    "@angular/cdk": "^14.0.4",
+    "@angular/common": "^14.0.4",
+    "@angular/compiler": "^14.0.4",
+    "@angular/core": "^14.0.4",
+    "@angular/flex-layout": "^14.0.0-beta.40",
+    "@angular/forms": "^14.0.4",
+    "@angular/material": "^14.0.4",
+    "@angular/platform-browser": "^14.0.4",
+    "@angular/platform-browser-dynamic": "^14.0.4",
+    "@angular/router": "^14.0.4",
+    "@microsoft/signalr": "^6.0.6",
+    "hammerjs": "^2.0.8",
+    "marked": "^4.0.17",
+    "prismjs": "^1.28.0",
+    "rxjs": "^7.5.5",
+    "tslib": "^2.4.0",
+    "zone.js": "^0.11.6"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^14.0.4",
+    "@angular/cli": "^14.0.4",
+    "@angular/compiler-cli": "^14.0.4",
+    "@angular/language-service": "^14.0.4",
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "@types/marked": "^4.0.3",
+    "@types/node": "^18.0.0",
+    "@types/prismjs": "^1.26.0",
+    "esbuild-windows-64": "^0.14.48",
+    "ng-packagr": "^14.0.2",
+    "prism-themes": "^1.9.0",
+    "roboto-fontface": "^0.10.0",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  }
+}
