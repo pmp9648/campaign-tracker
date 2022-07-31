@@ -1,0 +1,35 @@
+
+<form [formGroup]="form">
+    <section fxLayout="column"
+             fxLayoutAlign="start stretch">
+      <mat-form-field class="my4">
+        <mat-label>Campaign Name</mat-label>
+        <input formControlName="name"
+               matInput>
+        <mat-error *ngIf="name?.errors?.required">Name is required.</mat-error>
+      </mat-form-field>
+      <mat-form-field class="my4">
+        <mat-label>Campaign Description</mat-label>
+        <input formControlName="description"
+               matInput>
+      </mat-form-field>
+      <mat-form-field class="my4">
+        <mat-label>Campaign Start Date</mat-label>
+        <input formControlName="campaignStart"
+               matInput
+               type="date">
+      </mat-form-field>
+      <mat-form-field class="my4">
+        <mat-label>Campaign End Date</mat-label>
+        <input formControlName="campaignEnd"
+               matInput
+               type="date">
+      </mat-form-field>
+      <mat-form-field class="my4">
+        <mat-label>Current</mat-label>
+        <input formControlName="current"
+               matInput>
+      </mat-form-field>
+      <mat-slide-toggle [formControl]="isComplete">isComplete?</mat-slide-toggle>
+    </section>
+  </form>

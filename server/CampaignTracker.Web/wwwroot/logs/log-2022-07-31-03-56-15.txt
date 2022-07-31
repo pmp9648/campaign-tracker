@@ -1,0 +1,29 @@
+ContextDetails
+
+User: ehowell
+Local IP: ::1
+Local Port: 5000
+Remote IP: ::1
+Remote Port: 56645
+Content Type: 
+URL: http://localhost:5000/favicon.ico
+
+Headers
+Accept : image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Connection : keep-alive
+Host : localhost:5000
+User-Agent : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.77
+Accept-Encoding : gzip, deflate, br
+Accept-Language : en-US,en;q=0.9
+Cookie : .AspNetCore.Cookies=CfDJ8C0DpOcsti1CgMYO7qmOCCahRy3LuoNeU8tBy8sfHSVIdfJOHZIjn72oui7L2eF58tu7e2UPdZ4NNTcAHJEnJG2MNQOxPmsul205pktZS9f1fCQ0VJ4pDoXzTLSseGr3Bky-IhQC3cBhPc2uyJ7Yb8GFNmuOTTCaDeLRzbJ_q2C-IGNy8Ed-cEEGqJKQrh9whkUXukdXeI35GMEp0X8-SnAT5i9-rhLIS1uMGKdTyTqFIEFkryQAV_UaO0VC6fDxb4-_Anudeo4xSwIccjB7w7qRDkrHhWo3OlraIzh8iFZcgk8gLLLbXWJ53Wf_pKzu0ffn7TqYoJrGkYUi7rxG1ZTwPSDbcvvslE6vMj72QwM-dGL3vddlw4NJuSvoXzRImMvAVFKxgQbeYcPeFsywbb-BKYLTcWVCbzGcMS5e2kSsCpgopSGVyg5AUHLq7NDtWYr2UJZaYVrJOJfGwDxcFXY
+Referer : http://localhost:5000/api/campaign/queryByComplete/true?page=1&pageSize=20&search=%22%22&sort=asc
+sec-ch-ua : " Not;A Brand";v="99", "Microsoft Edge";v="103", "Chromium";v="103"
+DNT : 1
+sec-ch-ua-mobile : ?0
+sec-ch-ua-platform : "Windows"
+Sec-Fetch-Site : same-origin
+Sec-Fetch-Mode : no-cors
+Sec-Fetch-Dest : image
+
+Exception Details
+The route parameter name '' is invalid. Route parameter names must be non-empty and cannot contain these characters: '{', '}', '/'. The '?' character marks a parameter as optional, and can occur only at the end of the parameter. The '*' character marks a parameter as catch-all, and can occur only at the start of the parameter.

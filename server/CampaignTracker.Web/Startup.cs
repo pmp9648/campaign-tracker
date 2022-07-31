@@ -134,7 +134,7 @@ public class Startup
             app.UseMockMiddleware();
         else
             app.UseAdMiddleware();
-
+        
         app.UseSwagger();
         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Reactive v1"));
 

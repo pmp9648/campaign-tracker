@@ -13,11 +13,19 @@ try
 	using DbManager manager = new (env, destroy);
 	await manager.InitializeAsync();
 
-	/*
-		Seed from Services:
-		EntityService entitySvc = new(manager.Context);
-		await entitySvc.Seed();
-	*/
+	Console.WriteLine("Seeding Campaign...");
+	CampaignService campaignSvc = new(manager.Context);
+	await campaignSvc.Seed();
+
+	Console.WriteLine("Seeding Session...");
+	SessionService sessionSvc = new(manager.Context);
+	await sessionSvc.Seed();
+
+	Console.WriteLine("Seeding Events...");
+	EventService eventSvc = new(manager.Context);
+	await eventSvc.Seed();
+
+	Console.WriteLine("Database seeding completed successfully");
 }
 catch (Exception ex)
 {
