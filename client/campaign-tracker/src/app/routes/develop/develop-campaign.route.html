@@ -1,0 +1,12 @@
+<mat-toolbar>
+    <section fxFlex>
+        <span>Campaign {{campaign?.name}}</span>
+    </section>
+    <button mat-icon-button
+            class="m4"
+            aria-label="New Session"
+            (click)="addSession()">
+        <mat-icon>add</mat-icon>
+    </button>
+</mat-toolbar>
+<router-outlet></router-outlet>

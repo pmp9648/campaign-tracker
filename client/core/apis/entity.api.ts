@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ServerConfig } from '../config';
-import { QueryGeneratorService } from '../services';
+import { QueryGeneratorService } from '../services/query-generator.service';
+import { SnackerService } from '../services/snacker.service';
 
 export abstract class EntityApi<T> {
   protected api: string;
@@ -14,13 +15,20 @@ export abstract class EntityApi<T> {
   protected execute = <Data>(stream: Observable<Data>): Promise<Data> =>
     new Promise((resolve, reject) => {
       stream.subscribe({
-        next: (data: Data) => resolve(data),
-        error: (err: any) => reject(err)
+        next: (data: Data) => {
+          this.snacker.sendSuccessMessage('item successfully saved');
+          resolve(data)
+        },
+        error: (err: any) => {
+          this.snacker.sendErrorMessage(err.error);
+          reject(err)
+        }
       })
     })
 
   constructor(
     protected endpoint: string,
+    protected snacker: SnackerService,
     protected config: ServerConfig,
     protected generator: QueryGeneratorService,
     protected http: HttpClient
@@ -50,6 +58,6 @@ export abstract class EntityApi<T> {
 
   remove = (entity: T): Promise<boolean> =>
     this.execute(
-      this.http.post<boolean>(`${this.api}remove`, entity)
+      this.http.delete<boolean>(`${this.api}remove`, { body: entity })
     );
 }

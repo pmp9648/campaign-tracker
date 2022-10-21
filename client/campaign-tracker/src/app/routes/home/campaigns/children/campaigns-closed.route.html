@@ -1,0 +1,15 @@
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"
+                    color="accent"></mat-progress-bar>
+</ng-template>
+<ng-container *ngIf="campaignSrc.queryResult$ | async as query else loading">
+  <async-source-layout searchLabel="Search Campaigns"
+                       [src]="campaignSrc">
+    <data-card *ngFor="let campaign of query.data"
+               [data]="campaign"
+               (edit)="editCampaign($event)"
+               (remove)="removeCampaign($event)">
+      <campaign-display [campaign]="campaign"></campaign-display>
+    </data-card>
+  </async-source-layout>
+</ng-container>

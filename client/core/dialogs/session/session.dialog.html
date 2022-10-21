@@ -1,0 +1,15 @@
+<div class="mat-typography">
+    <h2 mat-dialog-title>
+      <span *ngIf="session?.id > 0">Edit Session</span>
+      <span *ngIf="!(session?.id > 0)">Add Session</span>
+    </h2>
+    <mat-dialog-content>
+      <session-editor [session]="session"
+                       (saved)="dialog.close($event)"></session-editor>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-stroked-button
+              color="warn"
+              mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+  </div>

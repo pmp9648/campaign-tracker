@@ -17,10 +17,11 @@ export interface Campaign extends EntityBase {
 
 export const GenerateCampaignForm =  (campaign: Campaign, fb: FormBuilder): FormGroup => 
     fb.group({
-        name: [campaign.name, Validators.required],
-        description: [campaign.description],
-        campaignStart: [campaign.campaignStart],
-        campaignEnd: [campaign.campaignEnd],
-        current: [campaign.current],
-        isComplete: [campaign.isComplete]
+        id: [campaign?.id],
+        name: [campaign?.name, Validators.required],
+        description: [campaign?.description],
+        campaignStart: [campaign?.campaignStart],
+        campaignEnd: [campaign?.campaignEnd],
+        current: [campaign?.current],
+        isComplete: [campaign?.isComplete]
     })

@@ -1,0 +1,15 @@
+<div class="mat-typography">
+    <h2 mat-dialog-title>
+      <span *ngIf="campaign?.id > 0">Edit Campaign</span>
+      <span *ngIf="!(campaign?.id > 0)">Add Campaign</span>
+    </h2>
+    <mat-dialog-content>
+      <campaign-editor [campaign]="campaign"
+                       (saved)="dialog.close($event)"></campaign-editor>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-stroked-button
+              color="warn"
+              mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+  </div>

@@ -1,0 +1,43 @@
+<form [formGroup]="form">
+    <section fxLayout="column"
+             fxLayoutAlign="start stretch">
+        <mat-form-field class="my4">
+            <mat-label>Title</mat-label>
+            <input formControlName="title"
+                   matInput>
+            <mat-error *ngIf="title?.errors?.required">Title is required.</mat-error>
+        </mat-form-field>
+        <ng-template #loading>
+            <mat-progress-bar mode="indeterminate"
+                              color="accent"></mat-progress-bar>
+        </ng-template>
+        <ng-container *ngIf="campaignApi.all$ | async as campaigns else loading">
+            <mat-form-field class="my4">
+                <mat-label>Campaign</mat-label>
+                <mat-select formControlName="campaignId">
+                    <mat-option *ngFor="let campaign of campaigns"
+                                [value]="campaign.id">{{campaign.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </ng-container>
+        <mat-form-field class="my4">
+            <mat-label>Session Date</mat-label>
+            <input formControlName="sessionDate"
+                   matInput
+                   type="date">
+        </mat-form-field>
+        <mat-form-field class="my4">
+            <mat-label>Url</mat-label>
+            <input formControlName="url"
+                   matInput>
+        </mat-form-field>
+        <mat-form-field class="my4">
+            <mat-label>Summary</mat-label>
+            <textarea matInput
+                      placeholder="It was the best of times it was the blurst of times..."
+                      formControlName="summary"
+                      cdkTextareaAutosize
+                      cdkAutosizeMinRows="4"></textarea>
+        </mat-form-field>
+    </section>
+</form>

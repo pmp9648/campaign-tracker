@@ -1,0 +1,30 @@
+<section fxLayout="row"
+         fxLayoutAlign="space-between stretch"
+         [class]="cardStyle"
+         [style.width.px]="size">
+  <section fxFlex>       
+  <ng-content></ng-content>
+  </section>
+  <section fxLayout="column"
+           fxLayoutAlign="space-between center"
+           [class]="actionStyle">
+    <button mat-icon-button
+           [class]="viewColor"
+           [matTooltip]="viewTooltip"
+           (click)="view.emit(data)">
+     <mat-icon>{{viewIcon}}</mat-icon>
+    </button>       
+    <button mat-icon-button
+            [class]="editColor"
+            [matTooltip]="editTooltip"
+            (click)="edit.emit(data)">
+      <mat-icon>{{editIcon}}</mat-icon>
+    </button>
+    <button mat-icon-button
+            [class]="removeColor"
+            [matTooltip]="removeTooltip"
+            (click)="remove.emit(data)">
+      <mat-icon>{{removeIcon}}</mat-icon>
+    </button>
+  </section>
+</section>

@@ -1,19 +1,12 @@
 import {
-    AfterViewInit,
     Component,
     Input
   } from '@angular/core';
-  
-  import {
-    EntityApi
-  } from '../../apis';
-  
   import { FormGroup } from '@angular/forms';
-import { Campaign } from '../../models';
   
   @Component({
-    selector: 'armor-form',
-    templateUrl: 'armor.form.html'
+    selector: 'campaign-form',
+    templateUrl: 'campaign.form.html'
   })
   export class CampaignForm {
     @Input() form: FormGroup;
@@ -25,8 +18,4 @@ import { Campaign } from '../../models';
     get current() { return this.form?.get('current') }
     get isComplete() { return this.form?.get('isComplete') }
     
-  
-    constructor(
-      private entityApi: EntityApi
-    ) { }
   }

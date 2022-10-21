@@ -15,7 +15,7 @@ public class SessionController : EntityController<Session>
         sessionSvc = svc;
     }
 
-    [HttpGet("[action]{campaignId}")]
+    [HttpGet("[action]/{campaignId}")]
     [ProducesResponseType(typeof(QueryResult<Session>), 200)]
     public async Task<IActionResult> QueryByCampaign(
         [FromRoute]int campaignId,

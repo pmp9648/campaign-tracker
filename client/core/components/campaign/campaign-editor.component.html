@@ -1,0 +1,16 @@
+<section fxLayout="column"
+         fxLayoutAlign="start stretch"
+         [class]="cardStyle"
+         [style.width.px]="size">
+  <campaign-form [form]="form"></campaign-form>
+  <section fxLayout="row"
+           fxLayoutAlign="end center"
+           fxLayoutGap="16px">
+    <button mat-stroked-button
+            class="color-primary"
+            [disabled]="form.invalid"
+            (click)="save()">
+      Save Campaign
+    </button>
+  </section>
+</section>
