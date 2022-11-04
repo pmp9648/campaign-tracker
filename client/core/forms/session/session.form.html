@@ -11,15 +11,6 @@
             <mat-progress-bar mode="indeterminate"
                               color="accent"></mat-progress-bar>
         </ng-template>
-        <ng-container *ngIf="campaignApi.all$ | async as campaigns else loading">
-            <mat-form-field class="my4">
-                <mat-label>Campaign</mat-label>
-                <mat-select formControlName="campaignId">
-                    <mat-option *ngFor="let campaign of campaigns"
-                                [value]="campaign.id">{{campaign.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </ng-container>
         <mat-form-field class="my4">
             <mat-label>Session Date</mat-label>
             <input formControlName="sessionDate"

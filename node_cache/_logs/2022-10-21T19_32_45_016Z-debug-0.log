@@ -7,29 +7,34 @@
 6 timing config:load:builtin Completed in 2ms
 7 timing config:load:cli Completed in 2ms
 8 timing config:load:env Completed in 0ms
-9 timing config:load:file:C:\Users\Phil\.me\Personal-Projects\campaign-tracker\.npmrc Completed in 0ms
+9 timing config:load:file:c:\Users\Phil\.me\Personal-Projects\campaign-tracker\.npmrc Completed in 1ms
 10 timing config:load:project Completed in 3ms
 11 timing config:load:file:C:\Users\Phil\.npmrc Completed in 0ms
 12 timing config:load:user Completed in 1ms
 13 timing config:load:file:C:\Users\Phil\AppData\Roaming\npm\etc\npmrc Completed in 0ms
 14 timing config:load:global Completed in 0ms
-15 timing config:load:validate Completed in 1ms
+15 timing config:load:validate Completed in 0ms
 16 timing config:load:credentials Completed in 1ms
 17 timing config:load:setEnvs Completed in 1ms
 18 timing config:load Completed in 13ms
 19 timing npm:load:configload Completed in 13ms
 20 timing npm:load:mkdirpcache Completed in 1ms
 21 timing npm:load:mkdirplogs Completed in 0ms
-22 verbose title npm run start-campaign-tracker
-23 verbose argv "run" "start-campaign-tracker"
+22 verbose title npm view @angular/animations description dist-tags.latest homepage version
+23 verbose argv "view" "--json" "@angular/animations" "description" "dist-tags.latest" "homepage" "version"
 24 timing npm:load:setTitle Completed in 1ms
-25 timing config:load:flatten Completed in 3ms
-26 timing npm:load:display Completed in 6ms
-27 verbose logfile logs-max:10 dir:C:\Users\Phil\.me\Personal-Projects\campaign-tracker\node_cache\_logs
-28 verbose logfile C:\Users\Phil\.me\Personal-Projects\campaign-tracker\node_cache\_logs\2022-09-30T22_03_30_832Z-debug-0.log
-29 timing npm:load:logFile Completed in 6ms
-30 timing npm:load:timers Completed in 0ms
-31 timing npm:load:configScope Completed in 1ms
-32 timing npm:load Completed in 30ms
+25 timing config:load:flatten Completed in 2ms
+26 timing npm:load:display Completed in 3ms
+27 verbose logfile logs-max:10 dir:c:\Users\Phil\.me\Personal-Projects\campaign-tracker\node_cache\_logs
+28 verbose logfile c:\Users\Phil\.me\Personal-Projects\campaign-tracker\node_cache\_logs\2022-10-21T19_32_45_016Z-debug-0.log
+29 timing npm:load:logFile Completed in 7ms
+30 timing npm:load:timers Completed in 1ms
+31 timing npm:load:configScope Completed in 0ms
+32 timing npm:load Completed in 28ms
 33 silly logfile start cleaning logs, removing 1 files
 34 silly logfile done cleaning log files
+35 http fetch GET 200 https://registry.npmjs.org/@angular%2fanimations 206ms (cache revalidated)
+36 timing command:view Completed in 248ms
+37 verbose exit 0
+38 timing npm Completed in 287ms
+39 info ok

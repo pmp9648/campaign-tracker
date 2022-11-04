@@ -1,15 +1,13 @@
 import {
     Component,
-    Input
+    Input,
+    OnInit
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { CampaignApi } from '../../apis'
-
 @Component({
     selector: 'session-form',
-    templateUrl: 'session.form.html',
-    providers: [CampaignApi]
+    templateUrl: 'session.form.html'
 })
 export class SessionForm {
     @Input() form: FormGroup;
@@ -18,9 +16,5 @@ export class SessionForm {
     get sessionDate() { return this.form?.get('sessionDate') }
     get url() { return this.form?.get('url') }
     get summary() { return this.form?.get('summary') }
-
-    constructor(
-        public campaignApi: CampaignApi
-    ) { }
 
 }
