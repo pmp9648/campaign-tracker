@@ -1,0 +1,49 @@
+<div class="p8">
+    <div class="clock-dial"
+         [ngStyle]='dial()'>
+        <div class="p32"
+             fxLayout="row"
+             fxLayoutAlign="center end">
+            <p [ngClass]="titleClass">{{title}}</p>
+        </div>
+        <div class="point"
+             [ngStyle]="point()"></div>
+        <div [ngStyle]="hour1()">1</div>
+        <div [ngStyle]="hour2()">2</div>
+        <div [ngStyle]="hour3()">3</div>
+        <div [ngStyle]="hour4()">4</div>
+        <div [ngStyle]="hour5()">5</div>
+        <div [ngStyle]="hour6()">6</div>
+        <div [ngStyle]="hour7()">7</div>
+        <div [ngStyle]="hour8()">8</div>
+        <div [ngStyle]="hour9()">9</div>
+        <div [ngStyle]="hour10()">10</div>
+        <div [ngStyle]="hour11()">11</div>
+        <div [ngStyle]="hour12()">12</div>
+
+        <div [ngStyle]="minuteHandWrapper()">
+            <div class="minute-hand">
+                <div [ngStyle]="minuteHand()"></div>
+                <div [ngStyle]="arrow()">V</div>
+            </div>
+        </div>
+
+        <div [ngStyle]="hourHandWrapper()">
+            <div class="hour-hand">
+                <div [ngStyle]="hourHand()"></div>
+                <div [ngStyle]="hourHandArrow()">V</div>
+            </div>
+        </div>
+
+        <div [ngStyle]="secondHandWrapper()">
+            <div [ngStyle]="secondHand()">
+                <div class="hand"></div>
+            </div>
+        </div>
+        <div class="p32"
+             fxLayout="row"
+             fxLayoutAlign="center end">
+            <p [ngClass]="titleClass">{{date | date: 'mediumDate'}}</p>
+        </div>
+    </div>
+</div>

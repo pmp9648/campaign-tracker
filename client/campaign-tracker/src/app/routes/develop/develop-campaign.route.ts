@@ -62,7 +62,8 @@ export class DevelopCampaignRoute implements OnInit, OnDestroy {
         this.sessionSrc.unsubscribe();
     }
 
-    editSession = (session: Session) => this.dialog.open(SessionDialog, {
+
+    edit = (session: Session) => this.dialog.open(SessionDialog, {
         data: session,
         disableClose: true,
         width: '400px'
@@ -78,20 +79,21 @@ export class DevelopCampaignRoute implements OnInit, OnDestroy {
     })
         .afterClosed()
         .subscribe(res => res && this.sessionSrc.forceRefresh());
+    view = (s: Session) => { }
 
-    // removeSession = (p: PlaneModel) => this.dialog.open(ConfirmDialog, {
-    //     data: {
-    //         title: `Remove ${p.name}`,
-    //         content: `Are you sure you want to remove ${p.name} (and all of its passengers) from the manifest?`
-    //     },
-    //     disableClose: true,
-    //     autoFocus: false
-    // })
-    //     .afterClosed()
-    //     .subscribe(async result => {
-    //         if (result) {
-    //             const res = await this.manifestSvc.removeManifestPlane(p);
-    //             res && this.manifestSvc.getManifestPlanes(p.parentId);
-    //         }
-    //     })
+    remove = (s: Session) => this.dialog.open(ConfirmDialog, {
+        data: {
+            title: `Remove ${s.title}`,
+            content: `Are you sure you want to remove ${s.title}?`
+        },
+        disableClose: true,
+        autoFocus: false
+    })
+        .afterClosed()
+        .subscribe(async result => {
+            if (result) {
+                const res = await this.sessionApi.remove(s);
+                res && this.sessionSrc.forceRefresh();
+            }
+        })
 }

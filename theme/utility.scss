@@ -208,7 +208,7 @@
   text-align: center;
 }
 
-@for $i from 0 through 24 {
+@for $i from 0 through 64 {
   .p#{$i} {
     padding: #{$i}px!important;
   }

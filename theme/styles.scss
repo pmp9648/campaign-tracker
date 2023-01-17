@@ -154,14 +154,6 @@
     }
   }
 
-  // the key is whole number representing a decimal/percentile
-  // if $key = 75 then scale(.75)
-  @for $size from 1 through 200 {
-    .scale-#{$size} {
-      transform: scale(#{math.div($size, 100)});
-    }
-  }
-
   @include style-glow($palette);
   @include style-snacker($palette);
 }

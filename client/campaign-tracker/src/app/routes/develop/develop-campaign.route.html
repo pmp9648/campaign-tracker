@@ -9,4 +9,30 @@
         <mat-icon>add</mat-icon>
     </button>
 </mat-toolbar>
+<ng-template #loading>
+    <mat-progress-bar mode="indeterminate"
+                      color="accent"></mat-progress-bar>
+</ng-template>
+<section fxLayout="row"
+         fxLayoutAlign="start stretch">
+    <section fxLayout="column"
+             fxLayoutAlign="start stretch">
+        <ng-container *ngIf="sessionSrc.queryResult$ | async as query else loading">
+            <async-source-layout [src]="sessionSrc"
+                                 searchLabel="search sessions">
+                <data-card *ngFor="let session of query.data"
+                           [data]="session"
+                           (edit)="edit($event)"
+                           (view)="view($event)"
+                           (remove)="remove($event)">
+                    <p>{{session?.title}}</p>
+                </data-card>
+            </async-source-layout>
+        </ng-container>
+    </section>
+    <section fxLayout="column"
+             fxLayoutAlign="start stretch" fxFill="66">
+        <clock></clock>
+    </section>
+</section>
 <router-outlet></router-outlet>
