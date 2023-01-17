@@ -21,23 +21,23 @@
         <div [ngStyle]="hour11()">11</div>
         <div [ngStyle]="hour12()">12</div>
 
-        <div [ngStyle]="minuteHandWrapper()">
-            <div class="minute-hand">
-                <div [ngStyle]="minuteHand()"></div>
-                <div [ngStyle]="arrow()">V</div>
-            </div>
-        </div>
-
         <div [ngStyle]="hourHandWrapper()">
-            <div class="hour-hand">
+            <div [style.position]="relative">
                 <div [ngStyle]="hourHand()"></div>
                 <div [ngStyle]="hourHandArrow()">V</div>
             </div>
         </div>
 
+        <div [ngStyle]="minuteHandWrapper()">
+            <div [style.position]="relative">
+                <div [ngStyle]="minuteHand()"></div>
+                <div [ngStyle]="minuteHandArrow()">V</div>
+            </div>
+        </div>
+
         <div [ngStyle]="secondHandWrapper()">
             <div [ngStyle]="secondHand()">
-                <div class="hand"></div>
+                <div [style.position]="relative"></div>
             </div>
         </div>
         <div class="p32"

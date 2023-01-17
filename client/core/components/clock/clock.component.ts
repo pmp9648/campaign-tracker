@@ -8,14 +8,13 @@ import {
 
 @Component({
   selector: 'clock',
-  templateUrl: 'clock.component.html',
-  styleUrls: ['clock.component.css'],
+  templateUrl: 'clock.component.html'
 })
 export class ClockComponent implements OnInit {
 
   border: number;
 
-  @Input() title = 'DnD Tracker'
+  @Input() title = 'Roll-ex'
   @Input() size: number = 300;
   @Input() hour;
   @Input() minute;
@@ -30,11 +29,11 @@ export class ClockComponent implements OnInit {
     this.minute = this.minute ? this.minute * 6 : this.date.getMinutes() * 6;
     this.hour = this.hour ? this.hour * 30 + Math.round(this.minute / 12) : this.date.getHours() * 30 + Math.round(this.minute / 12)
 
-    setInterval(() => {
-      this.second;
-      this.minute;
-      this.hour;
-    }, 1000);
+    // setInterval(() => {
+    //   this.second;
+    //   this.minute;
+    //   this.hour;
+    // }, 1000);
   }
 
   titleClass = 'mat-subheading-2 mt' + this.size / 10;
@@ -50,28 +49,6 @@ export class ClockComponent implements OnInit {
       'margin': '0 auto',
       'position': 'relative'
     };
-  }
-
-  secondHandWrapper(): object {
-    return {
-      'width.px': this.size / 1.42857,
-      'height.px': this.size / 1.42857,
-      'position': 'absolute',
-      'top.px': this.size / 9.090909,
-      'left.px': this.size / 9.090909,
-      'border-radius': '50%',
-      'transform': 'rotate(' + this.second + 'deg)',
-    }
-  }
-
-  secondHand(): object {
-    return {
-      'width.px': this.size / 250,
-      'height.px': this.size / 2.857,
-      'background-color': '#aa7228',
-      'position': 'absolute',
-      'left.px': this.size / 2.87356,
-    }
   }
 
   hourHandWrapper(): object {
@@ -95,6 +72,7 @@ export class ClockComponent implements OnInit {
       'left.px': this.size / 3.378378,
     }
   }
+
 
   hourHandArrow(): object {
     return {
@@ -130,7 +108,7 @@ export class ClockComponent implements OnInit {
     }
   }
 
-  arrow(): object {
+  minuteHandArrow(): object {
     return {
       'font-size.px': this.size / 16.6667,
       'font-weight': this.size > 250 ? 'bold' : '',
@@ -139,6 +117,28 @@ export class ClockComponent implements OnInit {
       'position': 'absolute',
       'left.px': this.size / 2.63157895,
       'top.px': this.size / -71.4285714,
+    }
+  }
+
+  secondHandWrapper(): object {
+    return {
+      'width.px': this.size / 1.42857,
+      'height.px': this.size / 1.42857,
+      'position': 'absolute',
+      'top.px': this.size / 9.090909,
+      'left.px': this.size / 9.090909,
+      'border-radius': '50%',
+      'transform': 'rotate(' + this.second + 'deg)',
+    }
+  }
+
+  secondHand(): object {
+    return {
+      'width.px': this.size / 250,
+      'height.px': this.size / 2.857,
+      'background-color': '#aa7228',
+      'position': 'absolute',
+      'left.px': this.size / 2.87356,
     }
   }
 
