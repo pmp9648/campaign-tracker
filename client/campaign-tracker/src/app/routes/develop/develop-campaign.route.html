@@ -1,13 +1,7 @@
 <mat-toolbar>
     <section fxFlex>
-        <span>Campaign {{campaign?.name}}</span>
+        <span>Campaign: {{campaign?.name}}</span>
     </section>
-    <button mat-icon-button
-            class="m4"
-            aria-label="New Session"
-            (click)="addSession()">
-        <mat-icon>add</mat-icon>
-    </button>
 </mat-toolbar>
 <ng-template #loading>
     <mat-progress-bar mode="indeterminate"
@@ -15,24 +9,72 @@
 </ng-template>
 <section fxLayout="row"
          fxLayoutAlign="start stretch">
+    <vertical-panel header="Sessions">
+        <section fxLayout="column"
+                 fxLayoutAlign="start stretch"
+                 [style.width.px]="400">
+            <ng-container *ngIf="sessionSrc.queryResult$ | async as query else loading">
+                <section fxLayout="row"
+                         fxLayoutAlign="start stretch">
+                    <button mat-stroked-button
+                            class="m4"
+                            aria-label="New Session"
+                            (click)="addSession()">
+                        New Session
+                    </button>
+                </section>
+                <async-source-layout [src]="sessionSrc"
+                                     searchLabel="search sessions">
+                    <data-card *ngFor="let session of query.data"
+                               [data]="session"
+                               (edit)="edit($event)"
+                               (view)="view($event)"
+                               (remove)="remove($event)">
+                        <p>{{session?.title}}</p>
+                    </data-card>
+                </async-source-layout>
+            </ng-container>
+        </section>
+    </vertical-panel>
+    <vertical-panel header="Events">
+        <section fxLayout="column"
+                 fxLayoutAlign="start stretch"
+                 [style.width.px]="400">
+            <ng-container *ngIf="eventSrc?.queryResult$ | async as query">
+                <section fxLayout="row"
+                         fxLayoutAlign="start stretch">
+                    <button mat-stroked-button
+                            class="m4"
+                            aria-label="New Session"
+                            (click)="addSession()">
+                        New Event
+                    </button>
+                </section>
+                <async-source-layout [src]="eventSrc"
+                                     searchLabel="search events">
+                    <data-card *ngFor="let event of query.data"
+                               [data]="event"
+                               (edit)="editEvent($event)"
+                               (view)="viewEvent($event)"
+                               (remove)="removeEvent($event)">
+                        <p>{{event?.title}}</p>
+                    </data-card>
+                </async-source-layout>
+            </ng-container>
+            <p *ngIf="!eventSrc?.queryResult$">Select a Session to load Events.</p>
+        </section>
+    </vertical-panel>
     <section fxLayout="column"
-             fxLayoutAlign="start stretch">
-        <ng-container *ngIf="sessionSrc.queryResult$ | async as query else loading">
-            <async-source-layout [src]="sessionSrc"
-                                 searchLabel="search sessions">
-                <data-card *ngFor="let session of query.data"
-                           [data]="session"
-                           (edit)="edit($event)"
-                           (view)="view($event)"
-                           (remove)="remove($event)">
-                    <p>{{session?.title}}</p>
-                </data-card>
-            </async-source-layout>
-        </ng-container>
+             fxLayoutAlign="start stretch"
+             fxFlex>
+        <section fxLayout="row"
+                 fxLayoutAlign="center star">
+            <clock></clock>
+        </section>
+        <section fxLayout="row"
+                 fxLayoutAlign="start stretch"
+                 class="card-outline-accent" fxFlex>
+        <p>Testing Section for Event Form</p>
+        </section>
     </section>
-    <section fxLayout="column"
-             fxLayoutAlign="start stretch" fxFill="66">
-        <clock></clock>
-    </section>
-</section>
-<router-outlet></router-outlet>
+    <router-outlet></router-outlet>

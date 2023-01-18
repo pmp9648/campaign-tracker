@@ -25,6 +25,6 @@ export class EventApi extends EntityApi<Event> {
     queryBySession = (sessionId: number) =>
         this.generator.generateSource<Event>(
             'id',
-            `${this.endpoint}queryByCampaign/${sessionId}`
+            `${this.endpoint}queryBySession/${sessionId}`
         );
 }

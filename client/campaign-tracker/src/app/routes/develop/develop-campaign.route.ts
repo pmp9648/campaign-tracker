@@ -13,6 +13,8 @@ import {
     Campaign,
     CampaignApi,
     ConfirmDialog,
+    Event,
+    EventApi,
     QuerySource,
     Session,
     SessionApi,
@@ -24,18 +26,24 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
     selector: 'develop-campaign-route',
     templateUrl: 'develop-campaign.route.html',
-    providers: [SessionApi]
+    providers: [
+        SessionApi,
+        EventApi,
+    ]
 })
 export class DevelopCampaignRoute implements OnInit, OnDestroy {
     private id: number;
     sessionSrc: QuerySource<Session>;
+    eventSrc: QuerySource<Event>;
     campaign: Campaign;
+    selected = false;
 
     constructor(
         private dialog: MatDialog,
         private route: ActivatedRoute,
         private router: Router,
         public sessionApi: SessionApi,
+        public eventApi: EventApi,
         private campaignApi: CampaignApi
     ) { }
 
@@ -71,6 +79,16 @@ export class DevelopCampaignRoute implements OnInit, OnDestroy {
         .afterClosed()
         .subscribe(res => res && this.sessionSrc.forceRefresh());
 
+    editEvent = (event: Event) => { }
+
+    viewEvent = (event: Event) => { }
+
+    removeEvent = (event: Event) => { 
+
+    }
+
+
+
     addSession = () => this.dialog.open(SessionDialog, {
         data: { campaignId: this.id } as Session,
         disableClose: true,
@@ -79,7 +97,11 @@ export class DevelopCampaignRoute implements OnInit, OnDestroy {
     })
         .afterClosed()
         .subscribe(res => res && this.sessionSrc.forceRefresh());
-    view = (s: Session) => { }
+    
+    view = (s: Session) => {
+        this.selected = !this.selected;
+        this.eventSrc = this.eventApi.queryBySession(s.id);
+    }
 
     remove = (s: Session) => this.dialog.open(ConfirmDialog, {
         data: {

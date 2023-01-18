@@ -11,7 +11,7 @@ import {
   templateUrl: 'clock.component.html'
 })
 export class ClockComponent implements OnInit {
-
+  position = 'relative';
   border: number;
 
   @Input() title = 'Roll-ex'
