@@ -5,10 +5,10 @@ import { Duration } from "./duration";
 import { EventType } from "./eventType";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-export interface Event extends EntityBase {
-    index: number;
+export interface SessionEvent extends EntityBase {
+    index?: number;
     sessionId: number;
-    eventTypeId: number;
+    eventTypeId?: number;
     totalDuration?: number;
     title: string;
     notes: string;
@@ -19,12 +19,13 @@ export interface Event extends EntityBase {
     durations: Duration[];   
 }
 
-export const GenerateEventForm =  (event: Event, fb: FormBuilder): FormGroup => 
+export const GenerateEventForm =  (event: SessionEvent, fb: FormBuilder): FormGroup => 
     fb.group({
-        index: [event.index],
-        sessionid: [event.sessionId, Validators.required],
-        eventTypeId: [event.eventTypeId, Validators.required],
-        totalDuration: [event.totalDuration],
-        title: [event.title, Validators.required],
-        notes: [event.notes]
+        id: [event?.id],
+        index: [event?.index],
+        sessionId: [event?.sessionId, Validators.required],
+        eventTypeId: [event?.eventTypeId, Validators.required],
+        totalDuration: [event?.totalDuration],
+        title: [event?.title, Validators.required],
+        notes: [event?.notes]
     })

@@ -8,7 +8,8 @@ public static class ServiceExtensions
 		
 		services.AddScoped<CampaignService>();
 		services.AddScoped<CharacterService>();
-		services.AddScoped<EventService>();
+		services.AddScoped<SessionEventService>();
+		services.AddScoped<EventTypeService>();
 		services.AddScoped<SessionService>();
 	}
 }

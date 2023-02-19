@@ -2,7 +2,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { EntityBase } from "../entity-base";
 import { Campaign } from "./campaign";
 import { Character } from "./character";
-import { Event } from "./event";
+import { SessionEvent } from "./session-event";
 
 export interface Session extends EntityBase {
     campaignId: number;
@@ -12,12 +12,13 @@ export interface Session extends EntityBase {
     summary: string;
 
     campaign: Campaign;
-    events: Event[];
+    sessionEvents: SessionEvent[];
     characters: Character[];
 }
 
 export const GenerateSessionForm =  (session: Session, fb: FormBuilder): FormGroup => 
     fb.group({
+        id: [session?.id],
         campaignId: [session.campaignId, Validators.required],
         sessionDate: [session.sessionDate, Validators.required],
         title: [session.title, Validators.required],

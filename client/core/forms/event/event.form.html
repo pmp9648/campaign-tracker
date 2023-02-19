@@ -1,0 +1,39 @@
+<form *ngIf="form"
+      [formGroup]="form">
+    <section fxLayout="column"
+             fxLayoutAlign="start stretch">
+        <mat-form-field class="my4">
+            <mat-label>Title</mat-label>
+            <input formControlName="title"
+                   matInput>
+            <mat-error *ngIf="title?.errors?.required">Title is required.</mat-error>
+        </mat-form-field>
+        <ng-template #loading>
+            <mat-progress-bar mode="indeterminate"
+                              color="accent"></mat-progress-bar>
+        </ng-template>
+        <ng-template #loading>
+            <mat-progress-bar mode="indeterminate"
+                              color="accent"></mat-progress-bar>
+        </ng-template>
+        <ng-container *ngIf="typeApi.entities$| async as types else loading">
+            <mat-form-field class="my4">
+                <mat-label>Event Type</mat-label>
+                <mat-select formControlName="eventTypeId">
+                    <mat-option *ngFor="let type of types"
+                                [value]="type.id">
+                        {{type.type}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </ng-container>
+        <mat-form-field class="my4">
+            <mat-label>Notes</mat-label>
+            <textarea matInput
+                      placeholder="It was the best of times it was the blurst of times..."
+                      formControlName="notes"
+                      cdkTextareaAutosize
+                      cdkAutosizeMinRows="4"></textarea>
+        </mat-form-field>
+    </section>
+</form>

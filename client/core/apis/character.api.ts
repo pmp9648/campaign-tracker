@@ -19,12 +19,12 @@ export class CharacterApi extends EntityApi<Character> {
         protected generator: QueryGeneratorService,
         protected http: HttpClient
     ) {
-        super('character', snacker, config, generator, http);
+        super(http, snacker, config.api, 'character');
     }
 
     queryByCampaign = (campaignId: number) =>
         this.generator.generateSource<Event>(
             'id',
-            `${this.endpoint}queryByCampaign/${campaignId}`
+            `${this.api}/queryByCampaign/${campaignId}`
         );
 }

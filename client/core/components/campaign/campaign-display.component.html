@@ -3,11 +3,15 @@
          class="p4">
   <section fxLayout="row"
            fxLayoutAlign="space-between center">
-      <p class="m4 mat-body-strong">{{campaign?.name}} </p>
-      <p *ngIf="campaign.isComplete"
-          class="m4 mat-body-strong">Complete</p>
+    <p class="m4 mat-body-strong">{{campaign?.name}} </p>
+    <p *ngIf="campaign.isComplete"
+       class="m4 mat-body-strong">Complete</p>
   </section>
   <p class="m4">{{campaign?.description}}</p>
-  <p class="m4">Started: {{campaign?.campaignStart}}</p>
-  <p class="m4">Ended: {{campaign?.campaignEnd}}</p>
+  <p class="m4">Total Duration: </p>
+  <section fxLayout="row"
+           fxLayoutAlign="space-between stretch">
+    <p class="m4">Started: {{campaign?.campaignStart}}</p>
+    <p *ngIf="campaign?.campaignEnd" class="m4">Ended: {{campaign?.campaignEnd}}</p>
+  </section>
 </section>

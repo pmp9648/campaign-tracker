@@ -19,7 +19,7 @@ export class QuerySource<T> extends CoreQuery<T> {
     this.sort = { propertyName, isDescending };
 
     this.baseUrl = url
-      ? `${this.config.api}${url}`
+      ? `${url}`
       : null;
   }
 

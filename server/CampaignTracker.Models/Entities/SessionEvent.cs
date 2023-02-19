@@ -1,6 +1,6 @@
 namespace CampaignTracker.Models;
 
-public class Event : EntityBase
+public class SessionEvent : EntityBase
 {
     public int Index { get; set; }
     public int SessionId { get; set;}

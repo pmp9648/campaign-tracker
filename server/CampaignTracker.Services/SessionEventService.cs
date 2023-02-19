@@ -5,32 +5,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CampaignTracker.Services;
 
-public static class EventExtensions
+public static class SessionEventExtensions
 {
-    public static IQueryable<Event> Search(this IQueryable<Event> Event, string search) => 
-        Event.Where(x => 
+    public static IQueryable<SessionEvent> Search(this IQueryable<SessionEvent> SessionEvent, string search) => 
+        SessionEvent.Where(x => 
             x.Title.ToLower().Contains(search.ToLower())
             || x.EventType.Type.ToLower().Contains(search.ToLower())
         );
 }
 
-public class EventService : ServiceBase<Event>
+public class SessionEventService : ServiceBase<SessionEvent>
 {
-    IQueryable<Event> Search(IQueryable<Event> data, string term) =>
+    IQueryable<SessionEvent> Search(IQueryable<SessionEvent> data, string term) =>
         data.Search(term);
 
-    public EventService(AppDbContext db) : base(db) { }
+    public SessionEventService(AppDbContext db) : base(db) { }
 
-    public override async Task<QueryResult<Event>> QueryAll(QueryParams query) => 
+    public override async Task<QueryResult<SessionEvent>> QueryAll(QueryParams query) => 
         await Query(set, query, Search);
 
-    public async Task<QueryResult<Event>> QueryBySession(int sessionId, QueryParams query) =>
+    public async Task<QueryResult<SessionEvent>> QueryBySession(int sessionId, QueryParams query) =>
         await Query(
             set.Where(x => x.SessionId == sessionId),
             query, Search
         );
 
-    public async Task<QueryResult<Event>> QueryByType(string Value, QueryParams query) =>
+    public async Task<QueryResult<SessionEvent>> QueryByType(string Value, QueryParams query) =>
         await Query(
             set.Where(x => x.EventType.Type.ToLower().Contains(Value.ToLower())),
             query, Search
@@ -52,9 +52,9 @@ public class EventService : ServiceBase<Event>
         for(int i = 1; i <= 3; i++)
         {
             var session = await db.Sessions.Where(x => x.Title.Contains($"Session {i}")).FirstOrDefaultAsync();
-		    await db.Events.AddRangeAsync(new List<Event>
+		    await db.SessionEvents.AddRangeAsync(new List<SessionEvent>
 		    {
-			    new Event { Title = $"Event {i}", Index = i, SessionId = session.Id, EventTypeId = eventName.Id }
+			    new SessionEvent { Title = $"SessionEvent {i}", Index = i, SessionId = session.Id, EventTypeId = eventName.Id }
 		    });
         }
 

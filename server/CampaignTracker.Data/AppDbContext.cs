@@ -8,7 +8,7 @@ public class AppDbContext : DbContext
 
     public DbSet<Campaign> Campaigns { get; set ;}
     public DbSet<Session> Sessions { get; set; }
-    public DbSet<Event> Events { get; set; }
+    public DbSet<SessionEvent> SessionEvents { get; set; }
     public DbSet<EventType> EventTypes { get; set; }
     public DbSet<Character> Characters { get; set; }
     public DbSet<Duration> Durations { get; set; }

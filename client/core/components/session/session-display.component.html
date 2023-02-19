@@ -1,0 +1,13 @@
+<section fxFlex>
+    <section fxLayout="row"
+             fxLayoutAlign="start stretch"
+             class="p4">
+        <p class="m4">{{session?.title}}</p>
+    </section>
+    <section class="p4">
+        <p class="m4">Total Duration: {{totalDuration | time}}</p>
+    </section>
+    <section class="p4">
+        <p class="m4">Summary: {{session?.summary | truncate}}</p>
+    </section>
+</section>

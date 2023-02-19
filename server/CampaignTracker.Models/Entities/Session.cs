@@ -8,6 +8,6 @@ public class Session : EntityBase
     public string Summary { get; set; }
 
     public Campaign Campaign { get; set; }
-    public IEnumerable<Event> Events { get; set; }
+    public IEnumerable<SessionEvent> SessionEvents { get; set; }
     public IEnumerable<Character> Characters { get; set; }
 }

@@ -1,29 +1,30 @@
 import {
   Component,
   Input,
-  OnInit,
-  Output,
-  EventEmitter
+  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 
 @Component({
   selector: 'clock',
   templateUrl: 'clock.component.html'
 })
-export class ClockComponent implements OnInit {
+export class ClockComponent implements OnChanges {
   position = 'relative';
   border: number;
+  tod: string;
 
-  @Input() title = 'Roll-ex'
+  @Input() title = 'Roll-Dex'
   @Input() size: number = 300;
   @Input() hour;
   @Input() minute;
   @Input() second;
   @Input() date: Date;
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.hour || changes.minute) {
     this.border = this.size / 25;
-
+    this.tod = this.hour > 12 ? 'PM' : 'AM'
     this.date = this.date ?? new Date();
     this.second = this.second ? this.second * 6 : this.date.getSeconds() * 6;
     this.minute = this.minute ? this.minute * 6 : this.date.getMinutes() * 6;
@@ -33,7 +34,7 @@ export class ClockComponent implements OnInit {
     //   this.second;
     //   this.minute;
     //   this.hour;
-    // }, 1000);
+    }
   }
 
   titleClass = 'mat-subheading-2 mt' + this.size / 10;
@@ -120,27 +121,27 @@ export class ClockComponent implements OnInit {
     }
   }
 
-  secondHandWrapper(): object {
-    return {
-      'width.px': this.size / 1.42857,
-      'height.px': this.size / 1.42857,
-      'position': 'absolute',
-      'top.px': this.size / 9.090909,
-      'left.px': this.size / 9.090909,
-      'border-radius': '50%',
-      'transform': 'rotate(' + this.second + 'deg)',
-    }
-  }
+  // secondHandWrapper(): object {
+  //   return {
+  //     'width.px': this.size / 1.42857,
+  //     'height.px': this.size / 1.42857,
+  //     'position': 'absolute',
+  //     'top.px': this.size / 9.090909,
+  //     'left.px': this.size / 9.090909,
+  //     'border-radius': '50%',
+  //     'transform': 'rotate(' + this.second + 'deg)',
+  //   }
+  // }
 
-  secondHand(): object {
-    return {
-      'width.px': this.size / 250,
-      'height.px': this.size / 2.857,
-      'background-color': '#aa7228',
-      'position': 'absolute',
-      'left.px': this.size / 2.87356,
-    }
-  }
+  // secondHand(): object {
+  //   return {
+  //     'width.px': this.size / 250,
+  //     'height.px': this.size / 2.857,
+  //     'background-color': '#aa7228',
+  //     'position': 'absolute',
+  //     'left.px': this.size / 2.87356,
+  //   }
+  // }
 
   point(): object {
     return {

@@ -21,4 +21,8 @@ public class SessionController : EntityController<Session>
         [FromRoute]int campaignId,
         [FromQuery]QueryParams query
     ) => Ok(await sessionSvc.QueryByCampaign(campaignId, query));
+
+    [HttpGet("[action]/{id}")]
+	public async Task<IActionResult> GetDuration([FromRoute]int id) =>
+		Ok(await sessionSvc.GetDuration(id));
 }

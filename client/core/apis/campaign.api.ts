@@ -8,7 +8,7 @@ import { ServerConfig } from '../config';
 import { QueryGeneratorService } from '../services/query-generator.service';
 import { EntityApi } from './entity.api';
 import { SnackerService } from '../services/snacker.service';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,17 +20,21 @@ export class CampaignApi extends EntityApi<Campaign> {
     protected generator: QueryGeneratorService,
     protected http: HttpClient
   ) {
-    super('campaign', snacker, config, generator, http);
+    super(http, snacker, config.api, 'campaign');
   }
-
-  all$: Observable<Campaign[]> = this.http.get<Campaign[]>(`${this.api}find`);
-
-  all = (): Promise<Campaign[]> =>
-    this.execute(this.all$);
 
   queryByComplete = (isComplete: boolean) =>
     this.generator.generateSource<Campaign>(
       'id',
-      `${this.endpoint}queryByComplete/${isComplete}`
+      `${this.api}/queryByComplete/${isComplete}`
     );
+
+
+  getDuration$ = (id: number): Observable<number> => this.http.get<number>(
+    `${this.api}/getDuration/${id}`
+  );
+
+  getDuration = (id: number): Promise<number> => firstValueFrom(
+    this.getDuration$(id)
+  );
 }

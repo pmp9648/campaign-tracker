@@ -1,16 +1,9 @@
-import { Event } from "./event";
 import { EntityBase } from "../entity-base";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { SessionEvent } from "./session-event";
 
 export interface EventType extends EntityBase {
     type: string;
     description: string;
 
-    events: Event[];
+    sessionEvents: SessionEvent[];
 }
-
-export const GenerateEventTypeForm = (eventType: EventType, fb: FormBuilder): FormGroup =>
-    fb.group({
-        type: [eventType.type, Validators.required],
-        description: [eventType.description]
-    })

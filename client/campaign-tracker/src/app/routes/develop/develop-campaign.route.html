@@ -1,6 +1,9 @@
 <mat-toolbar>
-    <section fxFlex>
+    <section fxLayout="row"
+            fxLayoutAlign="space-between stretch"
+            fxFlex>
         <span>Campaign: {{campaign?.name}}</span>
+        <span>Total Duration: {{campaignDuration | time}}</span>
     </section>
 </mat-toolbar>
 <ng-template #loading>
@@ -13,7 +16,7 @@
         <section fxLayout="column"
                  fxLayoutAlign="start stretch"
                  [style.width.px]="400">
-            <ng-container *ngIf="sessionSrc.queryResult$ | async as query else loading">
+            <ng-container *ngIf="sessionSrc?.queryResult$ | async as query else loading">
                 <section fxLayout="row"
                          fxLayoutAlign="start stretch">
                     <button mat-stroked-button
@@ -30,7 +33,7 @@
                                (edit)="edit($event)"
                                (view)="view($event)"
                                (remove)="remove($event)">
-                        <p>{{session?.title}}</p>
+                        <session-display [session]="session"></session-display>
                     </data-card>
                 </async-source-layout>
             </ng-container>
@@ -45,8 +48,8 @@
                          fxLayoutAlign="start stretch">
                     <button mat-stroked-button
                             class="m4"
-                            aria-label="New Session"
-                            (click)="addSession()">
+                            aria-label="New Event"
+                            (click)="addEvent(session.id)">
                         New Event
                     </button>
                 </section>
@@ -57,7 +60,20 @@
                                (edit)="editEvent($event)"
                                (view)="viewEvent($event)"
                                (remove)="removeEvent($event)">
-                        <p>{{event?.title}}</p>
+                        <section fxFlex>
+                            <section fxLayout="row"
+                                     fxLayoutAlign="start stretch"
+                                     class="p4">
+                                <p class="m4">{{event?.title}}</p>
+                                <p class="m4">{{event?.eventType?.type}}</p>
+                            </section>
+                            <section class="p4">
+                                <p class="m4">Total Duration: {{event?.totalDuration | time}}</p>
+                            </section>
+                            <section class="p4">
+                                <p class="m4">Notes: {{event?.notes | truncate}}</p>
+                            </section>
+                        </section>
                     </data-card>
                 </async-source-layout>
             </ng-container>
@@ -69,12 +85,17 @@
              fxFlex>
         <section fxLayout="row"
                  fxLayoutAlign="center star">
-            <clock></clock>
+            <clock *ngIf="hour"
+                [hour]="hour"
+                [minute]="minute"></clock>
         </section>
         <section fxLayout="row"
                  fxLayoutAlign="start stretch"
-                 class="card-outline-accent" fxFlex>
-        <p>Testing Section for Event Form</p>
+                 class="card-outline-accent"
+                 fxFlex>
+            <event-editor *ngIf="sessionEvent?.sessionId"
+                          [sessionEvent]="sessionEvent"
+                          (saved)="saveEvent($event)"></event-editor>
         </section>
     </section>
     <router-outlet></router-outlet>

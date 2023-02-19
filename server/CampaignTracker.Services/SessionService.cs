@@ -1,6 +1,7 @@
 using CampaignTracker.Core.Query;
 using CampaignTracker.Models;
 using CampaignTracker.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CampaignTracker.Services;
 
@@ -28,6 +29,18 @@ public class SessionService : ServiceBase<Session>
             set.Where(x => x.CampaignId == campaignId),
             query, Search
         );
+
+    public async Task<int> GetDuration(int sessionId) {
+        var events = await set
+            .Include(x => x.SessionEvents)
+            .Where(x => x.Id == sessionId).FirstOrDefaultAsync();
+        int duration = 0;
+        foreach(var e in events.SessionEvents) 
+        {
+            duration = duration + e.TotalDuration;
+        }
+        return duration;
+    }
     public override async Task Seed()
 	{
 

@@ -8,8 +8,8 @@ public static class DurationExtensions
 {
     public static IQueryable<Duration> Search(this IQueryable<Duration> Duration, string search) => 
         Duration.Where(x => 
-            x.Event.Title.ToLower().Contains(search.ToLower())
-            || x.Event.Notes.ToLower().Contains(search.ToLower())
+            x.SessionEvent.Title.ToLower().Contains(search.ToLower())
+            || x.SessionEvent.Notes.ToLower().Contains(search.ToLower())
         );
 }
 
@@ -25,7 +25,7 @@ public class DurationService : ServiceBase<Duration>
 
     public async Task<QueryResult<Duration>> QueryByEvent(int eventId, QueryParams query) =>
         await Query(
-            set.Where(x => x.EventId == eventId),
+            set.Where(x => x.SessionEventId == eventId),
             query, Search
         );
     

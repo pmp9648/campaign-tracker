@@ -72,6 +72,9 @@ public class ServiceBase<T> : IService<T> where T : EntityBase
 
 	public virtual async Task<T> Find(int id) =>
 		await set.FindAsync(id);
+	
+	public virtual async Task<List<T>> GetAll() =>
+		await set.ToListAsync();
 
 	public virtual Task<bool> Validate(T entity) => Task.FromResult(true);
 

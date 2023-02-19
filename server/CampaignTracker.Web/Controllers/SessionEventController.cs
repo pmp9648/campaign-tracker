@@ -6,17 +6,17 @@ using CampaignTracker.Services;
 namespace CampaignTracker.Web.Controllers;
 
 [Route("api/[controller]")]
-public class EventController : EntityController<Event>
+public class SessionEventController : EntityController<SessionEvent>
 {
-    readonly EventService eventSvc;
+    readonly SessionEventService eventSvc;
 
-    public EventController(EventService svc) : base(svc)
+    public SessionEventController(SessionEventService svc) : base(svc)
     {
         eventSvc = svc;
     }
 
     [HttpGet("[action]/{sessionId}")]
-    [ProducesResponseType(typeof(QueryResult<Event>), 200)]
+    [ProducesResponseType(typeof(QueryResult<SessionEvent>), 200)]
     public async Task<IActionResult> QueryBySession(
         [FromRoute]int sessionId,
         [FromQuery]QueryParams query

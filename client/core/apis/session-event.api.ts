@@ -1,5 +1,5 @@
 import {
-    Event
+    SessionEvent
 } from '../models';
 
 import { Injectable } from '@angular/core';
@@ -12,19 +12,19 @@ import { SnackerService } from '../services/snacker.service';
 @Injectable({
     providedIn: 'root'
 })
-export class EventApi extends EntityApi<Event> {
+export class SessionEventApi extends EntityApi<SessionEvent> {
     constructor(
         protected config: ServerConfig,
         protected snacker: SnackerService,
         protected generator: QueryGeneratorService,
         protected http: HttpClient
     ) {
-        super('event', snacker, config, generator, http);
+        super(http, snacker, config.api, 'sessionEvent');
     }
 
     queryBySession = (sessionId: number) =>
-        this.generator.generateSource<Event>(
+        this.generator.generateSource<SessionEvent>(
             'id',
-            `${this.endpoint}queryBySession/${sessionId}`
+            `${this.api}/queryBySession/${sessionId}`
         );
 }

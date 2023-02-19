@@ -1,6 +1,7 @@
 using CampaignTracker.Core.Query;
 using CampaignTracker.Models;
 using CampaignTracker.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CampaignTracker.Services;
 
@@ -29,51 +30,72 @@ public class CampaignService : ServiceBase<Campaign>
 			query, Search
 		);
 
+	public async Task<int> GetDuration(int campaignId)
+	{
+		var campaign = await set
+			.Include(x => x.Sessions)
+            .ThenInclude(x => x.SessionEvents)
+			.Where(x => x.Id == campaignId).FirstOrDefaultAsync();
+		int sessionDuration = 0;
+        int campaignDuration = 0;
+
+		foreach (var s in campaign.Sessions)
+		{
+			foreach (var e in s.SessionEvents)
+			{
+				sessionDuration = sessionDuration + e.TotalDuration;
+			}
+			campaignDuration = campaignDuration + sessionDuration;
+            sessionDuration = 0;
+		}
+		return campaignDuration;
+	}
+
 	public override async Task Seed()
 	{
 		await db.Campaigns.AddRangeAsync(new List<Campaign>
 		{
 			new Campaign { Name = "Onyx Dawn",  CampaignStart = "12/25/2020", CampaignEnd = "12/25/2022", isComplete = false, Current = "Yes",
-                
-                Characters = new List<Character>
-                {
-                    new Character
-                        {
-                            Firstname = "Gandolf",
-                            Lastname = "The Grey",
-                            Race = "Human",
-                            Class = "Wizard"
-                        },
-                    new Character
-                    {
-                        Firstname = "Frodo",
-                        Lastname = "Baggins",
-                        Class = "Fighter",
-                        Race = "Halfling"
-                    },
-                     new Character
-                    {
-                        Firstname = "Aragon",
-                        Lastname = "Stryder",
-                        Class = "Fighter",
-                        Race = "Human"
-                    },
-                     new Character
-                    {
-                        Firstname = "Legalis",
-                        Lastname = "The Elf",
-                        Class = "Ranger",
-                        Race = "Elf"
-                    },
-                     new Character
-                    {
-                        Firstname = "Geimly",
-                        Lastname = "The Barb",
-                        Class = "Barbarian",
-                        Race = "Dwarf"
-                    }
-                }
-            }
+
+				Characters = new List<Character>
+				{
+					new Character
+						{
+							Firstname = "Gandolf",
+							Lastname = "The Grey",
+							Race = "Human",
+							Class = "Wizard"
+						},
+					new Character
+					{
+						Firstname = "Frodo",
+						Lastname = "Baggins",
+						Class = "Fighter",
+						Race = "Halfling"
+					},
+					 new Character
+					{
+						Firstname = "Aragon",
+						Lastname = "Stryder",
+						Class = "Fighter",
+						Race = "Human"
+					},
+					 new Character
+					{
+						Firstname = "Legalis",
+						Lastname = "The Elf",
+						Class = "Ranger",
+						Race = "Elf"
+					},
+					 new Character
+					{
+						Firstname = "Geimly",
+						Lastname = "The Barb",
+						Class = "Barbarian",
+						Race = "Dwarf"
+					}
+				}
+			}
 		});
 
 		await db.SaveChangesAsync();

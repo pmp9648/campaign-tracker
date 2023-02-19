@@ -35,15 +35,16 @@
             </div>
         </div>
 
-        <div [ngStyle]="secondHandWrapper()">
+        <!-- <div [ngStyle]="secondHandWrapper()">
             <div [ngStyle]="secondHand()">
                 <div [style.position]="'relative'"></div>
             </div>
-        </div>
+        </div> -->
         <div class="p32"
              fxLayout="row"
              fxLayoutAlign="center end">
-            <p [ngClass]="titleClass">{{date | date: 'mediumDate'}}</p>
+             <p class="mat-title">{{tod}}</p>
+            <!-- <p [ngClass]="titleClass">{{date | date: 'mediumDate'}}</p> -->
         </div>
     </div>
 </div>

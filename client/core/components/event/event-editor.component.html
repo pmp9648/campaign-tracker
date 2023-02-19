@@ -1,0 +1,62 @@
+<section fxLayout="column"
+         fxLayoutAlign="start stretch"
+         [class]="cardStyle"
+         [style.width.px]="size">
+  <event-form *ngIf="form"
+              [form]="form"></event-form>
+  <section fxLayout="row"
+           fxLayoutAlign="end center"
+           fxLayoutGap="16px">
+    <button mat-stroked-button
+            class="color-primary"
+            [disabled]="form.invalid"
+            (click)="save()">
+      Save Event
+    </button>
+  </section>
+</section>
+<section fxLayout="column"
+         fxLayoutAlign="space-between stretch"
+         class="p4">
+  <button mat-stroked-button
+          class="m4"
+          [disabled]="form.invalid"
+          (click)="addTime(1)"> + 1 min
+  </button>
+  <button mat-stroked-button
+          class="m4"
+          [disabled]="form.invalid"
+          (click)="addTime(10)"> + 10 mins
+  </button>
+  <button mat-stroked-button
+          class="m4"
+          [disabled]="form.invalid"
+          (click)="addTime(60)"> + 1 hour
+  </button>
+  <button mat-stroked-button
+          class="m4"
+          [disabled]="form.invalid"
+          (click)="addTime(240)"> + 4 hours
+  </button>
+  <button mat-stroked-button
+          class="m4"
+          [disabled]="form.invalid"
+          (click)="addTime(480)"> +8 hours
+  </button>
+  <button mat-stroked-button
+          class="m4"
+          [disabled]="form.invalid"
+          (click)="addTime(1440)"> +1 Day
+  </button>
+  <button mat-stroked-button
+          class="m4 color-warn"
+          [disabled]="form.invalid"
+          (click)="addTime(0)"> Reset Time
+  </button>
+</section>
+<section fxLayout="column"
+         fxLayoutAlign="space-around center"
+         fxFlex
+         class="p16">
+  <p class="mat-title m4">Total Event Duration: {{duration | time}}</p>
+</section>
